@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "TinyWE AddonSettings library dev example",
+  "short_name": "TinyWE AddonSettings",
+  "version": "1.0",
+  "author": "rugk",
+
+  "description": "A tiny wrapper around the browser.storage.sync settings for getting an option.",
+  "homepage_url": "https://github.com/tinywebex/addonsettings",
+
+  // only for the unit test, we need to load libraries from CDNs
+  "content_security_policy": "default-src 'none'; style-src 'self' https://unpkg.com; script-src 'self' https://unpkg.com",
+
+  "permissions": [
+  	"storage"
+  ],
+  "applications": {
+    "gecko": {
+      // minimum version, because of module system
+      "strict_min_version": "60.0a1"
+    }
+  }
+}
