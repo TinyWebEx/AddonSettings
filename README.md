@@ -1,3 +1,3 @@
-# TinyWE Localizer
+# TinyWE AddonSettings
 
-A tiny library that translates your HTML file with the WebExtension translation system.
+A tiny library that helps you to retrieve the settings of your add-on.
