@@ -1,16 +1,16 @@
 /**
  * Caching wrapper for AddonSettings API that does save and load settings.
  *
- * @module /common/modules/AddonSettings
- * @requires /common/modules/lib/lodash/isObject
+ * @module AddonSettings
+ * @requires ../lodash/isObject.js
  * @requires /common/modules/Logger
  */
 // lodash
-import isObject from "/common/modules/lib/lodash/isObject.js";
+import isObject from "../lodash/isObject.js";
 
-import { DEFAULT_SETTINGS } from "./data/DefaultSettings.js";
+import { DEFAULT_SETTINGS } from "../data/DefaultSettings.js";
 
-import * as Logger from "/common/modules/Logger.js";
+import * as Logger from "../Logger/Logger.js";
 
 let gettingManagedOption;
 let gettingSyncOption;
