@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "TinyWE AddonSettings library dev example",
-  "short_name": "TinyWE AddonSettings",
+  "name": "TinyWebEx AddonSettings library dev example",
+  "short_name": "TinyWebEx AddonSettings",
   "version": "1.0",
   "author": "rugk",
 
@@ -16,6 +16,8 @@
   ],
   "applications": {
     "gecko": {
+      //ID required, because of storage permission
+      "id": "exampleId@rugk.github.io",
       // minimum version, because of module system
       "strict_min_version": "60.0a1"
     }
