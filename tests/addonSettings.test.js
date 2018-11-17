@@ -4,8 +4,8 @@ import "https://unpkg.com/sinon@6.1.5/pkg/sinon.js"; /* globals sinon */
 
 import * as AddonSettings from "../AddonSettings.js";
 
-import * as AddonSettingsStub from "./helper/AddonSettingsStub.js";
-import {wait} from "./helper/PromiseHelper.js";
+import * as AddonSettingsStub from "../../TestHelper/AddonSettingsStub.js";
+import {wait} from "../../TestHelper/PromiseHelper.js";
 
 /**
  * Safely returns the string representation of the value.
