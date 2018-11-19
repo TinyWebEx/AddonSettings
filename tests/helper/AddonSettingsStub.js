@@ -1,6 +1,6 @@
 import "https://unpkg.com/sinon@6.1.5/pkg/sinon.js"; /* globals sinon */
 
-import * as AddonSettings from "../AddonSettings/AddonSettings.js";
+import * as AddonSettings from "../../AddonSettings.js";
 
 import { FakeStorage } from "./FakeStorage.js";
 
