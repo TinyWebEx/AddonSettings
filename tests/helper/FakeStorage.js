@@ -1,5 +1,5 @@
-import isPlainObject from "../lodash/isPlainObject.js";
-import isString from "../lodash/isString.js";
+import isPlainObject from "../../../lodash/isPlainObject.js";
+import isString from "../../../lodash/isString.js";
 
 // NOTE: When using, remember this uses "this". So better .bind(thisObject) here.
 
