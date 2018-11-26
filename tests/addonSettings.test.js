@@ -4,7 +4,7 @@ import "https://unpkg.com/sinon@6.1.5/pkg/sinon.js"; /* globals sinon */
 
 import * as AddonSettings from "../AddonSettings.js";
 
-import * as AddonSettingsStub from "../../TestHelper/AddonSettingsStub.js";
+import * as AddonSettingsStub from "../../AddonSettings/tests/helper/AddonSettingsStub.js";
 import {wait} from "../../TestHelper/PromiseHelper.js";
 
 /**
