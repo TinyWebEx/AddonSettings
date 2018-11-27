@@ -283,8 +283,8 @@ describe("common module: AddonSettings", function () {
 
             // just verify two default values to not need to hardcode them here again
             chai.assert.deepNestedInclude(options, {
-                qrColor: "#0c0c0d",
-                qrBackgroundColor: "#ffffff"
+                exampleDefaultSetting: "#0c0c0d",
+                exampleDefaultSettingSecondColor: "#ffffff"
             });
         });
 
@@ -297,15 +297,15 @@ describe("common module: AddonSettings", function () {
 
             // just verify two default values to not need to hardcode them here again
             chai.assert.deepNestedInclude(options, {
-                qrColor: "#0c0c0d",
-                qrBackgroundColor: "#ffffff"
+                exampleDefaultSetting: "#0c0c0d",
+                exampleDefaultSettingSecondColor: "#ffffff"
             });
         });
 
         it("combines managed storage and default values, preferring the first", async function () {
             // modify internal state of storage
             const savedStorage = {
-                qrColor: "#0000ff",
+                exampleDefaultSetting: "#0000ff",
             };
             AddonSettingsStub.managedStorage.internalStorage = savedStorage;
 
@@ -321,16 +321,16 @@ describe("common module: AddonSettings", function () {
             chai.assert.containsAllKeys(
                 options,
                 {
-                    qrColor: "#0c0c0d",
-                    qrBackgroundColor: "#ffffff"
+                    exampleDefaultSetting: "#0c0c0d",
+                    exampleDefaultSettingSecondColor: "#ffffff"
                 },
                 "does not include keys from default values"
             );
 
             // prefers saved value
             chai.assert.strictEqual(
-                options.qrColor,
-                savedStorage.qrColor,
+                options.exampleDefaultSetting,
+                savedStorage.exampleDefaultSetting,
                 "did not prefer managed stored value over default stored value"
             );
         });
@@ -340,7 +340,7 @@ describe("common module: AddonSettings", function () {
 
             // modify internal state of storage
             const savedStorage = {
-                qrColor: "#0000ff",
+                exampleDefaultSetting: "#0000ff",
             };
             AddonSettingsStub.syncStorage.internalStorage = savedStorage;
 
@@ -356,16 +356,16 @@ describe("common module: AddonSettings", function () {
             chai.assert.containsAllKeys(
                 options,
                 {
-                    qrColor: "#0c0c0d",
-                    qrBackgroundColor: "#ffffff"
+                    exampleDefaultSetting: "#0c0c0d",
+                    exampleDefaultSettingSecondColor: "#ffffff"
                 },
                 "does not include keys from default values"
             );
 
             // prefers saved value
             chai.assert.strictEqual(
-                options.qrColor,
-                savedStorage.qrColor,
+                options.exampleDefaultSetting,
+                savedStorage.exampleDefaultSetting,
                 "did not prefer synced stored value over default stored value"
             );
         });
@@ -456,8 +456,8 @@ describe("common module: AddonSettings", function () {
             chai.assert.containsAllKeys(
                 options,
                 {
-                    qrColor: "#0c0c0d",
-                    qrBackgroundColor: "#ffffff"
+                    exampleDefaultSetting: "#0c0c0d",
+                    exampleDefaultSettingSecondColor: "#ffffff"
                 },
                 "does not include values from default store"
             );
@@ -754,8 +754,8 @@ describe("common module: AddonSettings", function () {
 
             // just verify two default values to not need to hardcode them here again
             chai.assert.deepNestedInclude(options, {
-                qrColor: "#0c0c0d",
-                qrBackgroundColor: "#ffffff"
+                exampleDefaultSetting: "#0c0c0d",
+                exampleDefaultSettingSecondColor: "#ffffff"
             });
         });
     });
