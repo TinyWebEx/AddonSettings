@@ -165,7 +165,7 @@ describe("common module: AddonSettings", function () {
         it("returns default value", async function () {
             // need to load options
             await AddonSettings.loadOptions();
-            const value = await AddonSettings.get("qrColor");
+            const value = await AddonSettings.get("exampleDefaultSetting");
 
             // verify results
             chai.assert.strictEqual(value, "#0c0c0d");
@@ -176,7 +176,7 @@ describe("common module: AddonSettings", function () {
 
             // need to load options
             await AddonSettings.loadOptions();
-            const value = await AddonSettings.get("qrColor");
+            const value = await AddonSettings.get("exampleDefaultSetting");
 
             // verify results
             chai.assert.strictEqual(value, "#0c0c0d");
@@ -186,12 +186,12 @@ describe("common module: AddonSettings", function () {
             // modify internal state of storages
             const savedManagedValue = "#00ff00";
             AddonSettingsStub.managedStorage.internalStorage = {
-                "qrColor": savedManagedValue
+                "exampleDefaultSetting": savedManagedValue
             };
 
             // need to load options
             await AddonSettings.loadOptions();
-            const value = await AddonSettings.get("qrColor");
+            const value = await AddonSettings.get("exampleDefaultSetting");
 
             // verify results
             chai.assert.strictEqual(value, savedManagedValue);
@@ -201,12 +201,12 @@ describe("common module: AddonSettings", function () {
             // modify internal state of storages
             const savedSyncedValue = "#00ff00";
             AddonSettingsStub.syncStorage.internalStorage = {
-                "qrColor": savedSyncedValue
+                "exampleDefaultSetting": savedSyncedValue
             };
 
             // need to load options
             await AddonSettings.loadOptions();
-            const value = await AddonSettings.get("qrColor");
+            const value = await AddonSettings.get("exampleDefaultSetting");
 
             // verify results
             chai.assert.strictEqual(value, savedSyncedValue);
@@ -740,7 +740,7 @@ describe("common module: AddonSettings", function () {
             // there should no need to load the options before doing the test
             // await AddonSettings.loadOptions();
 
-            const value = await AddonSettings.getDefaultValue("qrColor");
+            const value = await AddonSettings.getDefaultValue("exampleDefaultSetting");
 
             // verify results
             chai.assert.strictEqual(value, "#0c0c0d");
@@ -922,19 +922,19 @@ describe("common module: AddonSettings", function () {
         async function testWaitPromises(storageStubGet) {
             const singleValue = Symbol("preloaded");
             const allOptions = {
-                "qrColor": singleValue
+                "exampleDefaultSetting": singleValue
             };
             const promiseArray = [];
 
             storageStubGet
                 .withArgs().delayAndResolve(15, allOptions)
-                .withArgs("qrColor").delayAndResolve(15, singleValue);
+                .withArgs("exampleDefaultSetting").delayAndResolve(15, singleValue);
 
             promiseArray.push(AddonSettings.loadOptions());
 
             // test getting a single value
             let loadedSingleValue = null;
-            promiseArray.push(AddonSettings.get("qrColor").then((value) => {
+            promiseArray.push(AddonSettings.get("exampleDefaultSetting").then((value) => {
                 loadedSingleValue = value;
             }));
 
@@ -952,7 +952,7 @@ describe("common module: AddonSettings", function () {
 
             // verify it also did not return default (and thus wrong) value
             chai.assert.notStrictEqual(loadedSingleValue, "#0c0c0d", "AddonSettings.get(testValue): Data for single value has been prematurely returned as default (incorrect) value.");
-            chai.assert.notInclude(loadedOptions, { "qrColor": "#0c0c0d" }, "AddonSettings.get(): Data for all values has been prematurely returned as default (incorrect) value.");
+            chai.assert.notInclude(loadedOptions, { "exampleDefaultSetting": "#0c0c0d" }, "AddonSettings.get(): Data for all values has been prematurely returned as default (incorrect) value.");
 
             // they just must be the defaults
             chai.assert.strictEqual(loadedSingleValue, null, "AddonSettings.get(testValue): Data for single value has been prematurely returned as some (incorrect) value.");
