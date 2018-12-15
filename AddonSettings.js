@@ -10,7 +10,7 @@ import isObject from "../lodash/isObject.js";
 
 import { DEFAULT_SETTINGS } from "../data/DefaultSettings.js";
 
-import * as Logger from "../Logger/Logger.js";
+
 
 let gettingManagedOption;
 let gettingSyncOption;
@@ -38,7 +38,7 @@ export function getDefaultValue(option) {
     if (DEFAULT_SETTINGS.hasOwnProperty(option)) {
         return DEFAULT_SETTINGS[option];
     } else {
-        Logger.logError(`Default value for option "${option}" missing. No default value defined.`);
+        console.error(`Default value for option "${option}" missing. No default value defined.`);
         throw new Error(`Default value for option "${option}" missing. No default value defined.`);
     }
 }
@@ -130,14 +130,14 @@ export async function get(option = null) {
     // first try to get managed option
     if (managedOptions !== null && managedOptions.hasOwnProperty(option)) {
         result = managedOptions[option];
-        Logger.logInfo(`Managed setting got for "${option}".`, result);
+        console.info(`Managed setting got for "${option}".`, result);
         return result;
     } else {
         await requireSyncedOptions();
 
         if (syncOptions !== null && syncOptions.hasOwnProperty(option)) {
             result = syncOptions[option];
-            Logger.logInfo(`Synced setting got for "${option}".`, result);
+            console.info(`Synced setting got for "${option}".`, result);
             return result;
         }
     }
@@ -146,7 +146,7 @@ export async function get(option = null) {
     result = getDefaultValue(option);
 
     // last fallback: default value
-    Logger.logWarning(`Could not get option "${option}". Using default.`, result);
+    console.warn(`Could not get option "${option}". Using default.`, result);
 
     return result;
 }
@@ -185,7 +185,7 @@ export function set(option, value) {
         // add to cache
         Object.assign(syncOptions, option);
     }).catch((error) => {
-        Logger.logError("Could not save option:", option, error);
+        console.error("Could not save option:", option, error);
 
         // re-throw error to make user aware something failed
         throw error;
@@ -218,7 +218,7 @@ export function loadOptions() {
         // rethrow error if it is not just due to missing storage manifest
         if (error.message === "Managed storage manifest not found") {
             /* only log warning as that is expected when no manifest file is found */
-            Logger.logWarning("could not get managed options", error);
+            console.warn("could not get managed options", error);
 
             // This error is now handled.
             return;
@@ -235,7 +235,7 @@ export function loadOptions() {
             Object.assign(options, syncOptions);
         }
     }).catch((error) => {
-        Logger.logError("could not get sync options", error);
+        console.error("could not get sync options", error);
 
         // re-throw, so Promise is not marked as handled
         throw error;
@@ -247,5 +247,5 @@ export function loadOptions() {
 
 // automatically fetch options
 loadOptions().then(() => {
-    Logger.logInfo("AddonSettings module loaded.");
+    console.info("AddonSettings module loaded.");
 });
