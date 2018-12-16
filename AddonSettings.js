@@ -10,7 +10,7 @@ import isObject from "../lodash/isObject.js";
 
 import { DEFAULT_SETTINGS } from "../data/DefaultSettings.js";
 
-
+let enableCaching = true;
 
 let gettingManagedOption;
 let gettingSyncOption;
@@ -101,6 +101,21 @@ export function clearCache() {
 }
 
 /**
+ * Caching is enabled by default. Call this with "false" to disable.
+ *
+ * @public
+ * @param {boolean} enableCachingNew
+ * @returns {void}
+ */
+export function setCaching(enableCachingNew) {
+    if (enableCachingNew !== true && enableCachingNew !== false) {
+        throw new TypeError(`enableCachingNew must be a boolean parameter. "${enableCachingNew}" given.`);
+    }
+
+    enableCaching = enableCachingNew;
+}
+
+/**
  * Returns the add-on setting to use in add-on.
  *
  * If only a single option is requested (option=string) the result of the
@@ -115,6 +130,11 @@ export function clearCache() {
  */
 export async function get(option = null) {
     let result = undefined;
+
+    if (enableCaching === false) {
+        gettingManagedOption = browser.storage.managed.get(option);
+        gettingSyncOption = browser.storage.sync.get(option);
+    }
 
     // verify managed options are loaded (or are not available)
     await gettingManagedOption.catch(() => {
