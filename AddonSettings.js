@@ -44,6 +44,47 @@ export function getDefaultValue(option) {
 }
 
 /**
+ * (Re)requests the managed and sync options.
+ *
+ * Note: It is usually a good idea to clearCache() before!
+ *
+ * @private
+ * @param {null|string|string[]} [requestOption=null] the option value to request
+ * @returns {Promise}
+ * @throws {Error}
+ */
+function reloadOptions(requestOption = null) {
+    gettingManagedOption = browser.storage.managed.get(requestOption).then((options) => {
+        managedOptions = options;
+    }).catch((error) => {
+        // rethrow error if it is not just due to missing storage manifest
+        if (error.message === "Managed storage manifest not found") {
+            /* only log warning as that is expected when no manifest file is found */
+            console.warn("could not get managed options", error);
+
+            // This error is now handled.
+            return;
+        }
+
+        throw error;
+    });
+
+    gettingSyncOption = browser.storage.sync.get(requestOption).then((options) => {
+        if (syncOptions === null) {
+            syncOptions = options;
+        } else {
+            // In case set() is called before this Promise here resolves, we need to keep the old values, but prefer the newly set ones.
+            Object.assign(options, syncOptions);
+        }
+    }).catch((error) => {
+        console.error("could not get sync options", error);
+
+        // re-throw, so Promise is not marked as handled
+        throw error;
+    });
+}
+
+/**
  * Makes sure, that the synced o0ptions are available.
  *
  * @private
@@ -132,8 +173,8 @@ export async function get(option = null) {
     let result = undefined;
 
     if (enableCaching === false) {
-        gettingManagedOption = browser.storage.managed.get(option);
-        gettingSyncOption = browser.storage.sync.get(option);
+        clearCache();
+        reloadOptions(option);
     }
 
     // verify managed options are loaded (or are not available)
@@ -232,37 +273,10 @@ export function loadOptions() {
     clearCache();
 
     // just fetch everything
-    gettingManagedOption = browser.storage.managed.get().then((options) => {
-        managedOptions = options;
-    }).catch((error) => {
-        // rethrow error if it is not just due to missing storage manifest
-        if (error.message === "Managed storage manifest not found") {
-            /* only log warning as that is expected when no manifest file is found */
-            console.warn("could not get managed options", error);
-
-            // This error is now handled.
-            return;
-        }
-
-        throw error;
-    });
-
-    gettingSyncOption = browser.storage.sync.get().then((options) => {
-        if (syncOptions === null) {
-            syncOptions = options;
-        } else {
-            // In case set() is called before this Promise here resolves, we need to keep the old values, but prefer the newly set ones.
-            Object.assign(options, syncOptions);
-        }
-    }).catch((error) => {
-        console.error("could not get sync options", error);
-
-        // re-throw, so Promise is not marked as handled
-        throw error;
-    });
+    reloadOptions(null);
 
     // if the settings have been received anywhere, they could be loaded
-    return gettingManagedOption.catch(() => gettingSyncOption);// //
+    return gettingManagedOption.catch(() => gettingSyncOption);
 }
 
 // automatically fetch options
