@@ -150,7 +150,12 @@ export function clearCache() {
  */
 export function setCaching(enableCachingNew) {
     if (enableCachingNew !== true && enableCachingNew !== false) {
-        throw new TypeError(`enableCachingNew must be a boolean parameter. "${enableCachingNew}" given.`);
+        throw new TypeError(`First parameter must be a boolean parameter. "${enableCachingNew}" given.`);
+    }
+
+    // clear cache to avoid unexpected behaviour if this is toggled often
+    if (!enableCachingNew) {
+        clearCache();
     }
 
     enableCaching = enableCachingNew;
@@ -215,7 +220,8 @@ export async function get(option = null) {
 /**
  * Sets the settings.
  *
- * Note you can pass an key -> value object to set here.
+ * Note you can also pass a key -> value object to set here, as with the usual
+ * "set" storage API, or use the simplified two-parmeters version.
  *
  * @see {@link https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/StorageArea/set}
  * @public
