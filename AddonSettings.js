@@ -153,8 +153,10 @@ export function setCaching(enableCachingNew) {
         throw new TypeError(`First parameter must be a boolean parameter. "${enableCachingNew}" given.`);
     }
 
-    // clear cache to avoid unexpected behaviour if this is toggled often
-    if (!enableCachingNew) {
+    // clear or load cache if this setting is toggled often
+    if (enableCachingNew) {
+        loadOptions();
+    } else {
         clearCache();
     }
 
