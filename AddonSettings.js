@@ -133,6 +133,8 @@ async function getAllOptions() {
  * {@link loadOptions()} in case you need this. Otherwise, this leaves the
  * module in an uninitalized/unexpected state.
  *
+ * TODO: deprecate?
+ *
  * @public
  * @returns {void}
  */
