@@ -1023,4 +1023,112 @@ describe("common module: AddonSettings", function () {
             return loadSettings;
         });
     });
+
+    describe("setCaching() – cache setting", function () {
+        afterEach(function() {
+            AddonSettings.setCaching(true);
+        });
+
+        it("throws, if not provided with boolean parameter", async function () {
+            const testFunction1 = AddonSettings.setCaching.bind(null);
+            chai.assert.throws(testFunction1, Error, null,
+                "does not throw correctly when with no parameter provided");
+
+            const testFunction2 = AddonSettings.setCaching.bind(null, undefined);
+            chai.assert.throws(testFunction2, Error, null,
+                "does not throw correctly when with parameter 'undefined'");
+
+            const testFunction3 = AddonSettings.setCaching.bind(null, null);
+            chai.assert.throws(testFunction3, Error, null,
+                "does not throw correctly when with parameter 'null'");
+
+            const testFunction4 = AddonSettings.setCaching.bind(null, 1);
+            chai.assert.throws(testFunction4, Error, null,
+                "does not throw correctly when with parameter '1'");
+
+            const testFunction5 = AddonSettings.setCaching.bind(null, "string");
+            chai.assert.throws(testFunction5, Error, null,
+                "does not throw correctly when with string parameter");
+        });
+
+        it(".get() returns fresh data cache if caching is disabled", async function () {
+            const oldValue = Symbol("old");
+            const newValue = Symbol("newFakeOne");
+
+            AddonSettingsStub.managedStorage.internalStorage = {
+                "cachedData": oldValue
+            };
+
+            // reload options
+            await AddonSettings.loadOptions();
+
+            // disable caching
+            AddonSettings.setCaching(false);
+
+            // modify state of underlying storage
+            AddonSettingsStub.managedStorage.internalStorage = {
+                "cachedData": newValue,
+                "hasNewData": true,
+            };
+
+            const value = await AddonSettings.get("cachedData");
+
+            // verify it still has the old one
+            chai.assert.strictEqual(
+                value,
+                newValue,
+                "did not return fresh, but cached old value"
+            );
+
+            const options = await AddonSettings.get();
+            chai.assert.include(
+                options,
+                {"hasNewData": true},
+                "did not return fresh, but cached old value"
+            );
+
+            // verify get was called more than once
+            chai.assert.isAbove(AddonSettingsStub.stubs.managed.get.callCount, 1);
+        });
+
+        it(".get() returns fresh data cache if caching is disabled before loading data", async function () {
+            const oldValue = Symbol("old");
+            const newValue = Symbol("newFakeOne");
+
+            AddonSettingsStub.managedStorage.internalStorage = {
+                "cachedData": oldValue
+            };
+
+            // disable caching
+            AddonSettings.setCaching(false);
+
+            // reload options
+            await AddonSettings.loadOptions();
+
+            // modify state of underlying storage
+            AddonSettingsStub.managedStorage.internalStorage = {
+                "cachedData": newValue,
+                "hasNewData": true,
+            };
+
+            const value = await AddonSettings.get("cachedData");
+
+            // verify it still has the old one
+            chai.assert.strictEqual(
+                value,
+                newValue,
+                "did not return fresh, but cached old value"
+            );
+
+            const options = await AddonSettings.get();
+            chai.assert.include(
+                options,
+                {"hasNewData": true},
+                "did not return fresh, but cached old value"
+            );
+
+            // verify get was called more than once
+            chai.assert.isAbove(AddonSettingsStub.stubs.managed.get.callCount, 1);
+        });
+    });
 });

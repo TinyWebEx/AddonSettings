@@ -1,7 +1,7 @@
 import "https://unpkg.com/mocha@5.2.0/mocha.js"; /* globals mocha */
 import "https://unpkg.com/chai@4.1.2/chai.js"; /* globals chai */
 
-import { DEFAULT_SETTINGS } from "/common/modules/data/DefaultSettings.js";
+import { DEFAULT_SETTINGS } from "../../../data/DefaultSettings.js";
 
 describe("data: DEFAULT_SETTINGS", function () {
     describe("DEFAULT_SETTINGS", function () {
