@@ -230,7 +230,7 @@ export async function get(option = null) {
  * @see {@link https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/StorageArea/set}
  * @public
  * @param  {Object|string} option keys/values to set or single value
- * @param  {Object} [value=] if only a single value is to be set
+ * @param  {Object} [value] if only a single value is to be set
  * @returns {Promise}
  * @throws {TypeError}
  */
