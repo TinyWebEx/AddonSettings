@@ -69,6 +69,7 @@ So this is the required directory structure:
 ├── data
 │   ├── ...
 │   └── DefaultSettings.js
+...
 ```
 
 Due to the static ES6 module loading, this path is fixed and unfortunately cannot be modified.
@@ -78,7 +79,7 @@ It is recommended that this variable is a [constant](https://developer.mozilla.o
 Here is a template for that file:
 ```js
 /**
- * Sets the default settings for the AddonSettings module.
+ * Provides the default options for the AddonSettings module.
  *
  * @module data/DefaultSettings
  * @requires AddonSettings
