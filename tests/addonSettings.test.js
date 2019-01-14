@@ -10,7 +10,7 @@ import {wait} from "../../TestHelper/PromiseHelper.js";
 /**
  * Safely returns the string representation of the value.
  *
- * @function
+ * @private
  * @param {Object} value any value
  * @returns {void}
  */
@@ -476,6 +476,7 @@ describe("common module: AddonSettings", function () {
          * Tests, if the .get() function correctly throws when sync storage
          * not available anymore.
          *
+         * @private
          * @returns {void}
          */
         function testThrowsSyncNotAvailable() {
@@ -915,7 +916,7 @@ describe("common module: AddonSettings", function () {
          * Note we cannot use sinon's fake timer here, as we need to use the real asyncronity of JS and need
          * some delay to let the promises resolve.
          *
-         * @function
+         * @private
          * @param {AddonSettingsStub.stubs.managed.get|AddonSettingsStub.stubs.sync.get} storageStubGet
          * @returns {Promise}
          */
@@ -1029,7 +1030,7 @@ describe("common module: AddonSettings", function () {
             AddonSettings.setCaching(true);
         });
 
-        it("throws, if not provided with boolean parameter", async function () {
+        it("throws, if not provided with boolean parameter", function () {
             const testFunction1 = AddonSettings.setCaching.bind(null);
             chai.assert.throws(testFunction1, Error, null,
                 "does not throw correctly when with no parameter provided");
