@@ -133,6 +133,8 @@ async function getAllOptions() {
  * {@link loadOptions()} in case you need this. Otherwise, this leaves the
  * module in an uninitalized/unexpected state.
  *
+ * TODO: deprecate?
+ *
  * @public
  * @returns {void}
  */
@@ -150,7 +152,14 @@ export function clearCache() {
  */
 export function setCaching(enableCachingNew) {
     if (enableCachingNew !== true && enableCachingNew !== false) {
-        throw new TypeError(`enableCachingNew must be a boolean parameter. "${enableCachingNew}" given.`);
+        throw new TypeError(`First parameter must be a boolean parameter. "${enableCachingNew}" given.`);
+    }
+
+    // clear or load cache if this setting is toggled often
+    if (enableCachingNew) {
+        loadOptions();
+    } else {
+        clearCache();
     }
 
     enableCaching = enableCachingNew;
@@ -215,12 +224,13 @@ export async function get(option = null) {
 /**
  * Sets the settings.
  *
- * Note you can pass an key -> value object to set here.
+ * Note you can also pass a key -> value object to set here, as with the usual
+ * "set" storage API, or use the simplified two-parmeters version.
  *
  * @see {@link https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/StorageArea/set}
  * @public
  * @param  {Object|string} option keys/values to set or single value
- * @param  {Object} [value=] if only a single value is to be set
+ * @param  {Object} [value] if only a single value is to be set
  * @returns {Promise}
  * @throws {TypeError}
  */
