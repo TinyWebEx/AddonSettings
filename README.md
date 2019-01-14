@@ -14,7 +14,7 @@ A tiny library that helps you to retrieve the settings of your add-on.
 
 ### Getting settings
 
-The `.get` APi is the most important one, as it returns the setting you requested.
+The `.get` API is the most important one, as it returns the setting you requested.
 
 ```js
 AddonSettings.get("thisExampleSettingEnabled").then((exampleSettingEnabled) => {
@@ -92,5 +92,5 @@ export const DEFAULT_SETTINGS = Object.freeze({
 
 There are also unit tests in the file [`tests/dataTest/defaultSettings.test.js`](tests/dataTest/defaultSettings.test.js) that may help you to test this constant.
 
-**Important:** Even if you do not want to use that feature, the file including the export have to exist. 
-**Attention:** When introducing a new setting, you should also always specify a default value - even if it is just an empty string. (TODO: why? test?)
+**Important:** Even if you do not want to use that feature, the file including the export have to exist.  
+**Attention:** When introducing a new setting, you should also always specify a default value – even if it is just an empty string. (TODO: why? test?)
