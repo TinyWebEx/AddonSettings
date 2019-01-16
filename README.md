@@ -54,7 +54,7 @@ It's a common use-case to be able to define default values for your settings. Yo
 
 To accommodate for this use case, this module integrates a final fallback for getting such a default option. 
 
-### Setup default value store
+#### Setup default value store
 
 Obviously, you need to save the default options somewhere in your add-on. As with the other TinyWebEx modules, this is done in a dir called `data` in the parent directory of this module.
 
