@@ -215,7 +215,7 @@ export function loadOptions() {
     gettingManagedOption = browser.storage.managed.get().then((options) => {
         managedOptions = options;
     }).catch((error) => {
-        // rethrow error if it is not just due to missing storage manifest
+        // re-throw error if it is not just due to missing storage manifest
         if (error.message === "Managed storage manifest not found") {
             /* only log warning as that is expected when no manifest file is found */
             Logger.logWarning("could not get managed options", error);
@@ -242,7 +242,7 @@ export function loadOptions() {
     });
 
     // if the settings have been received anywhere, they could be loaded
-    return gettingManagedOption.catch(() => gettingSyncOption);// //
+    return gettingManagedOption.catch(() => gettingSyncOption);
 }
 
 // automatically fetch options
