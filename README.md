@@ -36,7 +36,7 @@ Again, it simplifies the API, so you do not have to wrap a single option in one 
 For example these calls are equivalent:
 ```js
 AddonSettings.set("thisExampleSettingEnabled", false);
-
+// does the same as
 AddonSettings.set({
     thisExampleSettingEnabled: false
 });
