@@ -36,7 +36,7 @@ export function getDefaultValue(option) {
     }
 
     // if undefined
-    if (DEFAULT_SETTINGS.hasOwnProperty(option)) {
+    if (option in DEFAULT_SETTINGS) {
         return DEFAULT_SETTINGS[option];
     } else {
         console.error(`Default value for option "${option}" missing. No default value defined.`);
@@ -199,14 +199,14 @@ export async function get(option = null) {
     }
 
     // first try to get managed option
-    if (managedOptions !== null && managedOptions.hasOwnProperty(option)) {
+    if (managedOptions !== null && (option in managedOptions)) {
         result = managedOptions[option];
         console.info(`Managed setting got for "${option}".`, result);
         return result;
     } else {
         await requireSyncedOptions();
 
-        if (syncOptions !== null && syncOptions.hasOwnProperty(option)) {
+        if (syncOptions !== null && (option in syncOptions)) {
             result = syncOptions[option];
             console.info(`Synced setting got for "${option}".`, result);
             return result;
