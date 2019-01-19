@@ -92,5 +92,14 @@ export const DEFAULT_SETTINGS = Object.freeze({
 
 There are also unit tests in the file [`tests/dataTest/defaultSettings.test.js`](tests/dataTest/defaultSettings.test.js) that may help you to test this constant.
 
-**Important:** Even if you do not want to use that feature, the file including the export have to exist.  
-**Attention:** When introducing a new setting, you should also always specify a default value – even if it is just an empty string. (TODO: why? test?)
+**Important:** Even if you do not want to use that feature, the file including the export has to exist.  
+**Attention:** When introducing a new setting, you should also always specify a default value – even if it is just an empty string. Otherwise, the addon will log an error and throw an exception.
+
+This is how it looks like, when you did not define a default option for a setting:
+```
+> await AddonSettings.get("unknownOption")
+Default value for option "unknownOption" missing. No default value defined. AddonSettings.js:41:9
+Error: Default value for option "unknownOption" missing. No default value defined. AddonSettings.js:42:15 
+```
+
+This helps you to find typing errors or missing options etc.
