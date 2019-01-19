@@ -65,7 +65,7 @@ So this is the required directory structure:
 │   ├── AddonSettings.js
 │   ├── CONTRIBUTORS
 │   ├── LICENSE.md
-│   ├── README.md
+│   └── README.md
 ├── data
 │   ├── ...
 │   └── DefaultSettings.js
