@@ -759,6 +759,10 @@ describe("common module: AddonSettings", function () {
                 exampleDefaultSettingSecondColor: "#ffffff"
             });
         });
+
+        it("throws, if non-existant value without default is requested", function () {
+            chai.assert.throws(AddonSettings.getDefaultValue.bind(null, "nonExistantSetting"), Error);
+        });
     });
 
     describe("get() – cache usage", function () {

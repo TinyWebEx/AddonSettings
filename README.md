@@ -36,7 +36,7 @@ Again, it simplifies the API, so you do not have to wrap a single option in one 
 For example these calls are equivalent:
 ```js
 AddonSettings.set("thisExampleSettingEnabled", false);
-
+// does the same as
 AddonSettings.set({
     thisExampleSettingEnabled: false
 });
@@ -54,7 +54,7 @@ It's a common use-case to be able to define default values for your settings. Yo
 
 To accommodate for this use case, this module integrates a final fallback for getting such a default option. 
 
-### Setup default value store
+#### Setup default value store
 
 Obviously, you need to save the default options somewhere in your add-on. As with the other TinyWebEx modules, this is done in a dir called `data` in the parent directory of this module.
 
@@ -65,7 +65,7 @@ So this is the required directory structure:
 │   ├── AddonSettings.js
 │   ├── CONTRIBUTORS
 │   ├── LICENSE.md
-│   ├── README.md
+│   └── README.md
 ├── data
 │   ├── ...
 │   └── DefaultSettings.js
@@ -94,5 +94,14 @@ export const DEFAULT_SETTINGS = Object.freeze({
 
 There are also unit tests in the file [`tests/dataTest/defaultSettings.test.js`](tests/dataTest/defaultSettings.test.js) that may help you to test this constant.
 
-**Important:** Even if you do not want to use that feature, the file including the export have to exist.  
-**Attention:** When introducing a new setting, you should also always specify a default value – even if it is just an empty string. (TODO: why? test?)
+**Important:** Even if you do not want to use that feature, the file including the export has to exist.  
+**Attention:** When introducing a new setting, you should also always specify a default value – even if it is just an empty string. Otherwise, the addon will log an error and throw an exception.
+
+This is how it looks like, when you did not define a default option for a setting:
+```
+> await AddonSettings.get("unknownOption")
+Default value for option "unknownOption" missing. No default value defined. AddonSettings.js:41:9
+Error: Default value for option "unknownOption" missing. No default value defined. AddonSettings.js:42:15 
+```
+
+This helps you to find typing errors or missing options etc.
