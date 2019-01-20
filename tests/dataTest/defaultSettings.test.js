@@ -1,9 +1,13 @@
 /**
  * Unit tests for DefaultSettings.js object.
  *
- * You can use it to check the vadility of your default settings object.
+ * You can embed it in your unit tests to check the vadility of your default settings object.
  *
+ * @public
  * @module defaultSettingsTest
+ * @requires mocha
+ * @requires chai
+ * @requires data/DefaultSettings
  */
 
 import "https://unpkg.com/mocha@5.2.0/mocha.js"; /* globals mocha */

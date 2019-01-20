@@ -26,7 +26,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-AddonSettingsStub.html">AddonSettingsStub</a><ul class='methods'><li data-type='method'><a href="module-AddonSettingsStub.html#.disableManagedStore">disableManagedStore</a></li><li data-type='method'><a href="module-AddonSettingsStub.html#.stubAllStorageApis">stubAllStorageApis</a></li><li data-type='method'><a href="module-AddonSettingsStub.html#.stubSettings">stubSettings</a></li></ul></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TinyWebEx/" >All TinyWebExt modules</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
 </nav>
 
 <div id="main">
@@ -54,7 +54,7 @@
         <div class="container-overview">
         
             
-                <div class="description">Caching wrapper for AddonSettings API that does save and load settings.</div>
+                <div class="description"><p>Caching wrapper for AddonSettings API that does save and load settings.</p></div>
             
 
             
@@ -176,7 +176,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line142">line 142</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line143">line 143</a>
     </li></ul></dd>
     
 
@@ -216,13 +216,11 @@
 
 
 <div class="description">
-    Clears the stored/cached values.
-
-Usually you should not call this, but just reload the data with
-loadOptions() in case you need this. Otherwise, this leaves the
-module in an uninitalized/unexpected state.
-
-TODO: deprecate?
+    <p>Clears the stored/cached values.</p>
+<p>Usually you should not call this, but just reload the data with
+<code>loadOptions()</code> in case you need this. Otherwise, this leaves the
+module in an uninitalized/unexpected state.</p>
+<p>TODO: deprecate?</p>
 </div>
 
 
@@ -284,7 +282,7 @@ TODO: deprecate?
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line182">line 182</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line183">line 183</a>
     </li></ul></dd>
     
 
@@ -324,12 +322,11 @@ TODO: deprecate?
 
 
 <div class="description">
-    Returns the add-on setting to use in add-on.
-
-If only a single option is requested (option=string) the result of the
+    <p>Returns the add-on setting to use in add-on.</p>
+<p>If only a single option is requested (option=string) the result of the
 promise will be that return value.
-Otherwise, you can pass no parmeter or "null" and it will return all
-saved config values.
+Otherwise, you can pass no parmeter or &quot;null&quot; and it will return all
+saved config values.</p>
 </div>
 
 
@@ -406,7 +403,7 @@ saved config values.
                 </td>
             
 
-            <td class="description last">name of the option</td>
+            <td class="description last"><p>name of the option</p></td>
         </tr>
 
     
@@ -431,7 +428,7 @@ saved config values.
 <dl>
     <dt>
         <div class="param-desc">
-        if option is not available or other (internal) error happened
+        <p>if option is not available or other (internal) error happened</p>
         </div>
     </dt>
     <dd></dd>
@@ -459,7 +456,7 @@ saved config values.
 
         
 <div class="param-desc">
-    resulting in single value or object of values or undefined
+    <p>resulting in single value or object of values or undefined</p>
 </div>
 
 
@@ -496,7 +493,7 @@ saved config values.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line32">line 32</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -536,9 +533,8 @@ saved config values.
 
 
 <div class="description">
-    Get the default value for a seting.
-
-Returns undefined, if option cannot be found.
+    <p>Get the default value for a seting.</p>
+<p>Returns undefined, if option cannot be found.</p>
 </div>
 
 
@@ -595,7 +591,7 @@ Returns undefined, if option cannot be found.
 
             
 
-            <td class="description last">name of the option</td>
+            <td class="description last"><p>name of the option</p></td>
         </tr>
 
     
@@ -620,7 +616,7 @@ Returns undefined, if option cannot be found.
 <dl>
     <dt>
         <div class="param-desc">
-        if option is not available
+        <p>if option is not available</p>
         </div>
     </dt>
     <dd></dd>
@@ -684,7 +680,7 @@ Returns undefined, if option cannot be found.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line278">line 278</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line279">line 279</a>
     </li></ul></dd>
     
 
@@ -724,12 +720,11 @@ Returns undefined, if option cannot be found.
 
 
 <div class="description">
-    Fetches all options, so they can be used later.
-
-This is basically the init method!
+    <p>Fetches all options, so they can be used later.</p>
+<p>This is basically the init method!
 It returns a promise, but that does not have to be used, because the module is
 built in a way, so that the actual getting of the options is waiting for
-the promise.
+the promise.</p>
 </div>
 
 
@@ -791,7 +786,7 @@ the promise.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line238">line 238</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line239">line 239</a>
     </li></ul></dd>
     
 
@@ -838,10 +833,9 @@ the promise.
 
 
 <div class="description">
-    Sets the settings.
-
-Note you can also pass a key -> value object to set here, as with the usual
-"set" storage API, or use the simplified two-parmeters version.
+    <p>Sets the settings.</p>
+<p>Note you can also pass a key -&gt; value object to set here, as with the usual
+&quot;set&quot; storage API, or use the simplified two-parmeters version.</p>
 </div>
 
 
@@ -908,7 +902,7 @@ Note you can also pass a key -> value object to set here, as with the usual
 
             
 
-            <td class="description last">keys/values to set or single value</td>
+            <td class="description last"><p>keys/values to set or single value</p></td>
         </tr>
 
     
@@ -941,7 +935,7 @@ Note you can also pass a key -> value object to set here, as with the usual
 
             
 
-            <td class="description last">if only a single value is to be set</td>
+            <td class="description last"><p>if only a single value is to be set</p></td>
         </tr>
 
     
@@ -1013,7 +1007,7 @@ Note you can also pass a key -> value object to set here, as with the usual
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line154">line 154</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -1053,7 +1047,7 @@ Note you can also pass a key -> value object to set here, as with the usual
 
 
 <div class="description">
-    Caching is enabled by default. Call this with "false" to disable.
+    <p>Caching is enabled by default. Call this with &quot;false&quot; to disable.</p>
 </div>
 
 
@@ -1167,7 +1161,7 @@ Note you can also pass a key -> value object to set here, as with the usual
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 14 2019 23:45:29 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 22:44:10 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

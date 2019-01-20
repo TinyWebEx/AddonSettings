@@ -1,6 +1,7 @@
 /**
  * Caching wrapper for AddonSettings API that does save and load settings.
  *
+ * @public
  * @module AddonSettings
  * @requires ../data/DefaultSettings.js
  * @requires ../lodash/isObject.js

@@ -90,6 +90,8 @@ export const DEFAULT_SETTINGS = Object.freeze({
 });
 ```
 
+([`examples/DefaultSettings.js`](examples/DefaultSettings.js))
+
 There are also unit tests in the file [`tests/dataTest/defaultSettings.test.js`](tests/dataTest/defaultSettings.test.js) that may help you to test this constant.
 
 **Important:** Even if you do not want to use that feature, the file including the export have to exist.  
