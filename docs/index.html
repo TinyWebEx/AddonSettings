@@ -26,7 +26,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TinyWebEx/" >All TinyWebExt modules</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TinyWebEx/" >All TinyWebExt modules</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-data_DefaultSettings.html">data/DefaultSettings</a></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
 </nav>
 
 <div id="main">
@@ -64,7 +64,7 @@
 Again, it simplifies the API, so you do not have to wrap a single option in one object, but of course you can still use an object, if you want.</p>
 <p>For example these calls are equivalent:</p>
 <pre class="prettyprint source lang-js"><code>AddonSettings.set(&quot;thisExampleSettingEnabled&quot;, false);
-
+// does the same as
 AddonSettings.set({
     thisExampleSettingEnabled: false
 });</code></pre><h3 id="caching">Caching</h3>
@@ -73,7 +73,7 @@ AddonSettings.set({
 <h3 id="default-values">Default values</h3>
 <p>It's a common use-case to be able to define default values for your settings. You could save them at the first installation of your add-on, but then you cannot differenciate between a default option that the user did not set/explicitly modify and a setting, where the user explicitly set the default value. This may be handy if you later e.g. change the default value of an option.</p>
 <p>To accommodate for this use case, this module integrates a final fallback for getting such a default option. </p>
-<h3 id="setup-default-value-store">Setup default value store</h3>
+<h4 id="setup-default-value-store">Setup default value store</h4>
 <p>Obviously, you need to save the default options somewhere in your add-on. As with the other TinyWebEx modules, this is done in a dir called <code>data</code> in the parent directory of this module.</p>
 <p>So this is the required directory structure:</p>
 <pre class="prettyprint source"><code>.
@@ -81,7 +81,7 @@ AddonSettings.set({
 │   ├── AddonSettings.js
 │   ├── CONTRIBUTORS
 │   ├── LICENSE.md
-│   ├── README.md
+│   └── README.md
 ├── data
 │   ├── ...
 │   └── DefaultSettings.js
@@ -100,7 +100,11 @@ export const DEFAULT_SETTINGS = Object.freeze({
     thisExampleSettingEnabled: null
 });</code></pre><p>(<a href="examples/DefaultSettings.js"><code>examples/DefaultSettings.js</code></a>)</p>
 <p>There are also unit tests in the file <a href="tests/dataTest/defaultSettings.test.js"><code>tests/dataTest/defaultSettings.test.js</code></a> that may help you to test this constant.</p>
-<p><strong>Important:</strong> Even if you do not want to use that feature, the file including the export have to exist.<br><strong>Attention:</strong> When introducing a new setting, you should also always specify a default value – even if it is just an empty string. (TODO: why? test?)</p></article>
+<p><strong>Important:</strong> Even if you do not want to use that feature, the file including the export has to exist.<br><strong>Attention:</strong> When introducing a new setting, you should also always specify a default value – even if it is just an empty string. Otherwise, the addon will log an error and throw an exception.</p>
+<p>This is how it looks like, when you did not define a default option for a setting:</p>
+<pre class="prettyprint source"><code>> await AddonSettings.get(&quot;unknownOption&quot;)
+Default value for option &quot;unknownOption&quot; missing. No default value defined. AddonSettings.js:41:9
+Error: Default value for option &quot;unknownOption&quot; missing. No default value defined. AddonSettings.js:42:15 </code></pre><p>This helps you to find typing errors or missing options etc.</p></article>
     </section>
 
 
@@ -115,7 +119,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 22:44:10 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 22:51:34 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

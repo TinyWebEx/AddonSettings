@@ -1,6 +1,7 @@
 /**
  * Provides the default options for the AddonSettings module.
  *
+ * @public
  * @module data/DefaultSettings
  */
 

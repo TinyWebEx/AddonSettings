@@ -26,7 +26,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TinyWebEx/" >All TinyWebExt modules</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TinyWebEx/" >All TinyWebExt modules</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-data_DefaultSettings.html">data/DefaultSettings</a></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
 </nav>
 
 <div id="main">
@@ -142,9 +142,9 @@
         <h3 class="subsection-title">Requires</h3>
 
         <ul>
-            <li>module:../data/DefaultSettings.js</li>
+            <li><a href="module-data_DefaultSettings.html">module:data/DefaultSettings</a></li>
         
-            <li>module:../lodash/isObject.js</li>
+            <li>module:../lodash/isObject</li>
         </ul>
     
 
@@ -176,7 +176,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line143">line 143</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -194,6 +194,8 @@
 
     
 
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>Do use <a href="module-AddonSettings.html#.setCaching"><code>setCaching</code></a> or <a href="module-AddonSettings.html#.loadOptions"><code>loadOptions</code></a> instead.</li></ul></dd>
     
 
     
@@ -218,9 +220,8 @@
 <div class="description">
     <p>Clears the stored/cached values.</p>
 <p>Usually you should not call this, but just reload the data with
-<code>loadOptions()</code> in case you need this. Otherwise, this leaves the
+<a href="module-AddonSettings.html#.loadOptions"><code>loadOptions</code></a> in case you need this. Otherwise, this leaves the
 module in an uninitalized/unexpected state.</p>
-<p>TODO: deprecate?</p>
 </div>
 
 
@@ -282,7 +283,7 @@ module in an uninitalized/unexpected state.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line183">line 183</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line182">line 182</a>
     </li></ul></dd>
     
 
@@ -680,7 +681,7 @@ saved config values.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line279">line 279</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line278">line 278</a>
     </li></ul></dd>
     
 
@@ -786,7 +787,7 @@ the promise.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line239">line 239</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line238">line 238</a>
     </li></ul></dd>
     
 
@@ -1007,7 +1008,7 @@ the promise.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line155">line 155</a>
+        <a href="AddonSettings.js.html">AddonSettings.js</a>, <a href="AddonSettings.js.html#line154">line 154</a>
     </li></ul></dd>
     
 
@@ -1161,7 +1162,7 @@ the promise.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 22:44:10 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 22:51:34 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -3,8 +3,8 @@
  *
  * @public
  * @module AddonSettings
- * @requires ../data/DefaultSettings.js
- * @requires ../lodash/isObject.js
+ * @requires data/DefaultSettings
+ * @requires ../lodash/isObject
  */
 
 // lodash
@@ -132,13 +132,12 @@ async function getAllOptions() {
  * Clears the stored/cached values.
  *
  * Usually you should not call this, but just reload the data with
- * {@link loadOptions()} in case you need this. Otherwise, this leaves the
+ * {@link module:AddonSettings.loadOptions|loadOptions} in case you need this. Otherwise, this leaves the
  * module in an uninitalized/unexpected state.
- *
- * TODO: deprecate?
  *
  * @public
  * @returns {void}
+ * @deprecated Do use {@link module:AddonSettings.setCaching|setCaching} or {@link module:AddonSettings.loadOptions|loadOptions} instead.
  */
 export function clearCache() {
     managedOptions = null;
