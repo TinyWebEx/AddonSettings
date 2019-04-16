@@ -8,7 +8,7 @@
  */
 
 // lodash
-import isObject from "../lodash/isObject.js";
+import isPlainObject from "../lodash/isPlainObject.js";
 
 import { DEFAULT_SETTINGS } from "../data/DefaultSettings.js";
 
@@ -19,6 +19,35 @@ let gettingSyncOption;
 
 let managedOptions = null;
 let syncOptions = null;
+
+
+/**
+ * Creates a (shallow) copy of the object or array.
+ *
+ * Also returns the value, as it is, if it needs no unfreezing.
+ *
+ * @private
+ * @param  {*} value the value
+ * @returns {*} the value, now freely modifyable
+ */
+function unfreezeObject(value) {
+    // always shallow-copy
+    if (Array.isArray(value)) {
+        value = value.slice();
+    } else if ((isPlainObject(value))) {
+        value = Object.assign({}, value);
+    } else {
+        // return primitive value or similar ones
+        return value;
+    }
+
+    // but warn if object was not even frozen, so deev can fix the default settings
+    if (!Object.isFrozen(value)) {
+        console.warn("The following defined default value of type", typeof value, "is not frozen. It is recommend that all default options are frozen.", value);
+    }
+
+    return value;
+}
 
 /**
  * Get the default value for a seting.
@@ -31,18 +60,22 @@ let syncOptions = null;
  * @throws {Error} if option is not available
  */
 export function getDefaultValue(option) {
-    // return all default values
-    if (!option) {
-        return DEFAULT_SETTINGS;
+    const clonedDefaultSettings = DEFAULT_SETTINGS;
+
+    // if undefined return the object
+    if (option in clonedDefaultSettings) {
+        return unfreezeObject(clonedDefaultSettings[option]);
     }
 
-    // if undefined
-    if (option in DEFAULT_SETTINGS) {
-        return DEFAULT_SETTINGS[option];
-    } else {
-        console.error(`Default value for option "${option}" missing. No default value defined.`);
-        throw new Error(`Default value for option "${option}" missing. No default value defined.`);
+    // return all default values
+    if (!option) {
+        Object.values(unfreezeObject(clonedDefaultSettings)).map(unfreezeObject);
+        return clonedDefaultSettings;
     }
+
+    // end result fails
+    console.error(`Default value for option "${option}" missing. No default value defined.`);
+    throw new Error(`Default value for option "${option}" missing. No default value defined.`);
 }
 
 /**
@@ -237,7 +270,7 @@ export async function get(option = null) {
  */
 export function set(option, value) {
     // put params into object if needed
-    if (!isObject(option)) {
+    if (!isPlainObject(option)) {
         if (value === undefined) {
             return Promise.reject(new TypeError("Second argument 'value' has not been passed."));
         }

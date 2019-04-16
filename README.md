@@ -74,30 +74,16 @@ So this is the required directory structure:
 
 Due to the static ES6 module loading, this path is fixed and unfortunately cannot be modified.
 The file `DefaultSettings.js` is an ES6 module and has to [export](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export) a variable named `DEFAULT_SETTINGS` with an object of the default settings.
-It is recommended that this variable is a [constant](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const) and even the object may be [frozen](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze).
+It is recommended that this variable is a [constant](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const) and that the object are [frozen](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze). Remember, also to freeze the objects inside of the objects. See the example on how to do that.
 
-Here is a template for that file:
-```js
-/**
- * Provides the default options for the AddonSettings module.
- *
- * @module data/DefaultSettings
- * @requires AddonSettings
- */
-
-export const DEFAULT_SETTINGS = Object.freeze({
-    thisExampleSettingEnabled: null
-});
-```
-
-([`examples/DefaultSettings.js`](examples/DefaultSettings.js))
+A template for that file can be found in [`examples/DefaultSettings.js`](examples/DefaultSettings.js).
 
 There are also unit tests in the file [`tests/dataTest/defaultSettings.test.js`](tests/dataTest/defaultSettings.test.js) that may help you to test this constant.
 
 **Important:** Even if you do not want to use that feature, the file including the export has to exist.  
 **Attention:** When introducing a new setting, you should also always specify a default value – even if it is just an empty string. Otherwise, the addon will log an error and throw an exception.
 
-This is how it looks like, when you did not define a default option for a setting:
+This is how it looks like, when you forgot to define a default option for a setting:
 ```
 > await AddonSettings.get("unknownOption")
 Default value for option "unknownOption" missing. No default value defined. AddonSettings.js:41:9
