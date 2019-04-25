@@ -5,7 +5,7 @@ A tiny library that helps you to retrieve the settings of your add-on.
 ## Features
 
 * allows you to specify default settings and automatically returns these when you request a setting
-* requests the managed option first, so administrators can override user's settings with managed ones
+* requests the [managed options](https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/storage/managed) first, so administrators can override user's settings with managed ones
 * falls back to sync storage
 * removes some awkwardness of the add-on storage API, i.e. e.g. returns you single results directly than wrapped in an object
 * caches the options by default
