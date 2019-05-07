@@ -26,7 +26,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-AddonSettingsStub.html">AddonSettingsStub</a><ul class='methods'><li data-type='method'><a href="module-AddonSettingsStub.html#.disableManagedStore">disableManagedStore</a></li><li data-type='method'><a href="module-AddonSettingsStub.html#.stubAllStorageApis">stubAllStorageApis</a></li><li data-type='method'><a href="module-AddonSettingsStub.html#.stubSettings">stubSettings</a></li></ul></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/TinyWebEx/" >All TinyWebExt modules</a></h2><h3>Modules</h3><ul><li><a href="module-AddonSettings.html">AddonSettings</a><ul class='methods'><li data-type='method'><a href="module-AddonSettings.html#.clearCache">clearCache</a></li><li data-type='method'><a href="module-AddonSettings.html#.get">get</a></li><li data-type='method'><a href="module-AddonSettings.html#.getDefaultValue">getDefaultValue</a></li><li data-type='method'><a href="module-AddonSettings.html#.loadOptions">loadOptions</a></li><li data-type='method'><a href="module-AddonSettings.html#.set">set</a></li><li data-type='method'><a href="module-AddonSettings.html#.setCaching">setCaching</a></li></ul></li><li><a href="module-data_DefaultSettings.html">data/DefaultSettings</a></li><li><a href="module-defaultSettingsTest.html">defaultSettingsTest</a></li></ul>
 </nav>
 
 <div id="main">
@@ -39,51 +39,49 @@
     
 
 
-
-
-
-
-
-
-
-    
-
-
     <section class="readme">
-        <article><h1>TinyWebEx AddonSettings</h1><p>A tiny library that helps you to retrieve the settings of your add-on.</p>
-<h2>Features</h2><ul>
+        <article><h1 id="tinywebex-addonsettings">TinyWebEx AddonSettings</h1>
+<p>A tiny library that helps you to retrieve the settings of your add-on.</p>
+<h2 id="features">Features</h2>
+<ul>
 <li>allows you to specify default settings and automatically returns these when you request a setting</li>
 <li>requests the managed option first, so administrators can override user's settings with managed ones</li>
 <li>falls back to sync storage</li>
 <li>removes some awkwardness of the add-on storage API, i.e. e.g. returns you single results directly than wrapped in an object</li>
 <li>caches the options by default</li>
 </ul>
-<h2>Usage</h2><h3>Getting settings</h3><p>The <code>.get</code> API is the most important one, as it returns the setting you requested.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="getting-settings">Getting settings</h3>
+<p>The <code>.get</code> API is the most important one, as it returns the setting you requested.</p>
 <pre class="prettyprint source lang-js"><code>AddonSettings.get(&quot;thisExampleSettingEnabled&quot;).then((exampleSettingEnabled) => {
     if (exampleSettingEnabled) {
         // do something...
     }
 }</code></pre><p>As the usual storage API, it does support <code>null</code> or no first parameter to return all options of the WebExtension. However, note that it does not yet support the method of passing an array of strings or object to return multiple values at the same time.</p>
 <p>It tries to use the <code>sync</code> storage method and falls back to a <a href="#default-values">default option</a>, if specified. Also, if there is a managed setting (<code>managed</code> storage) it takes precedence.</p>
-<h3>Saving settings</h3><p>Respectively you can use <code>.set</code> to save an option (in the sync storage). It is useful to use this, as it also updates the value in the internal cache of the module.
+<h3 id="saving-settings">Saving settings</h3>
+<p>Respectively you can use <code>.set</code> to save an option (in the sync storage). It is useful to use this, as it also updates the value in the internal cache of the module.
 Again, it simplifies the API, so you do not have to wrap a single option in one object, but of course you can still use an object, if you want.</p>
 <p>For example these calls are equivalent:</p>
 <pre class="prettyprint source lang-js"><code>AddonSettings.set(&quot;thisExampleSettingEnabled&quot;, false);
-
+// does the same as
 AddonSettings.set({
     thisExampleSettingEnabled: false
-});</code></pre><h3>Caching</h3><p>As already mentioned above, the addon by default caches the options and that may be cumbersome when settings are changed by other parts of your add-on or so. Thus, you also have the ability to disable caching completly. Just call <code>AddonSettings.setCaching(false)</code>.</p>
+});</code></pre><h3 id="caching">Caching</h3>
+<p>As already mentioned above, the addon by default caches the options and that may be cumbersome when settings are changed by other parts of your add-on or so. Thus, you also have the ability to disable caching completly. Just call <code>AddonSettings.setCaching(false)</code>.</p>
 <p>Alternatively, you can also manually reload the options if you run <code>.loadOptions()</code> again. Obviously, this only makles sense if you have caching enabled.</p>
-<h3>Default values</h3><p>It's a common use-case to be able to define default values for your settings. You could save them at the first installation of your add-on, but then you cannot differenciate between a default option that the user did not set/explicitly modify and a setting, where the user explicitly set the default value. This may be handy if you later e.g. change the default value of an option.</p>
+<h3 id="default-values">Default values</h3>
+<p>It's a common use-case to be able to define default values for your settings. You could save them at the first installation of your add-on, but then you cannot differenciate between a default option that the user did not set/explicitly modify and a setting, where the user explicitly set the default value. This may be handy if you later e.g. change the default value of an option.</p>
 <p>To accommodate for this use case, this module integrates a final fallback for getting such a default option. </p>
-<h3>Setup default value store</h3><p>Obviously, you need to save the default options somewhere in your add-on. As with the other TinyWebEx modules, this is done in a dir called <code>data</code> in the parent directory of this module.</p>
+<h4 id="setup-default-value-store">Setup default value store</h4>
+<p>Obviously, you need to save the default options somewhere in your add-on. As with the other TinyWebEx modules, this is done in a dir called <code>data</code> in the parent directory of this module.</p>
 <p>So this is the required directory structure:</p>
 <pre class="prettyprint source"><code>.
 ├── AddonSettings
 │   ├── AddonSettings.js
 │   ├── CONTRIBUTORS
 │   ├── LICENSE.md
-│   ├── README.md
+│   └── README.md
 ├── data
 │   ├── ...
 │   └── DefaultSettings.js
@@ -100,8 +98,13 @@ It is recommended that this variable is a <a href="https://developer.mozilla.org
 
 export const DEFAULT_SETTINGS = Object.freeze({
     thisExampleSettingEnabled: null
-});</code></pre><p>There are also unit tests in the file <a href="tests/dataTest/defaultSettings.test.js"><code>tests/dataTest/defaultSettings.test.js</code></a> that may help you to test this constant.</p>
-<p><strong>Important:</strong> Even if you do not want to use that feature, the file including the export have to exist.<br><strong>Attention:</strong> When introducing a new setting, you should also always specify a default value – even if it is just an empty string. (TODO: why? test?)</p></article>
+});</code></pre><p>(<a href="examples/DefaultSettings.js"><code>examples/DefaultSettings.js</code></a>)</p>
+<p>There are also unit tests in the file <a href="tests/dataTest/defaultSettings.test.js"><code>tests/dataTest/defaultSettings.test.js</code></a> that may help you to test this constant.</p>
+<p><strong>Important:</strong> Even if you do not want to use that feature, the file including the export has to exist.<br><strong>Attention:</strong> When introducing a new setting, you should also always specify a default value – even if it is just an empty string. Otherwise, the addon will log an error and throw an exception.</p>
+<p>This is how it looks like, when you did not define a default option for a setting:</p>
+<pre class="prettyprint source"><code>> await AddonSettings.get(&quot;unknownOption&quot;)
+Default value for option &quot;unknownOption&quot; missing. No default value defined. AddonSettings.js:41:9
+Error: Default value for option &quot;unknownOption&quot; missing. No default value defined. AddonSettings.js:42:15 </code></pre><p>This helps you to find typing errors or missing options etc.</p></article>
     </section>
 
 
@@ -116,7 +119,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jan 14 2019 23:45:29 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 20 2019 22:51:34 GMT+0100 (Mitteleuropäische Normalzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
