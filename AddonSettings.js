@@ -235,6 +235,13 @@ export async function get(option = null) {
     if (managedOptions !== null && (option in managedOptions)) {
         result = managedOptions[option];
         console.info(`Managed setting got for "${option}".`, result);
+
+        // merge with default options, if this is an object, so default
+        // values are also provided
+        if (isPlainObject(result)) {
+            result = Object.assign({}, getDefaultValue(option), result);
+        }
+
         return result;
     } else {
         await requireSyncedOptions();
@@ -242,6 +249,13 @@ export async function get(option = null) {
         if (syncOptions !== null && (option in syncOptions)) {
             result = syncOptions[option];
             console.info(`Synced setting got for "${option}".`, result);
+
+            // merge with default options, if this is an object, so default
+            // values are also provided
+            if (isPlainObject(result)) {
+                result = Object.assign({}, getDefaultValue(option), result);
+            }
+
             return result;
         }
     }
