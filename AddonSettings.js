@@ -165,12 +165,12 @@ async function getAllOptions() {
  * Clears the stored/cached values.
  *
  * Usually you should not call this, but just reload the data with
- * {@link module:AddonSettings.loadOptions|loadOptions} in case you need this. Otherwise, this leaves the
+ * {@see loadOptions} in case you need this. Otherwise, this leaves the
  * module in an uninitalized/unexpected state.
  *
  * @public
  * @returns {void}
- * @deprecated Do use {@link module:AddonSettings.setCaching|setCaching} or {@link module:AddonSettings.loadOptions|loadOptions} instead.
+ * @deprecated Do use {@see setCaching} or {@see loadOptions} instead.
  */
 export function clearCache() {
     managedOptions = null;
