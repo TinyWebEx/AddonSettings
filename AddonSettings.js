@@ -59,7 +59,7 @@ function unfreezeObject(value) {
  * @returns {Object|undefined}
  * @throws {Error} if option is not available
  */
-export function getDefaultValue(option) {
+export function getDefaultValue(option = null) {
     const clonedDefaultSettings = DEFAULT_SETTINGS;
 
     // if undefined return the object
@@ -85,7 +85,7 @@ export function getDefaultValue(option) {
  *
  * @private
  * @param {null|string|string[]} [requestOption=null] the option value to request
- * @returns {Promise}
+ * @returns {void}
  * @throws {Error}
  */
 function reloadOptions(requestOption = null) {
